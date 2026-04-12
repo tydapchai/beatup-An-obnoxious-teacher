@@ -17,6 +17,9 @@ public class EnemyScript : MonoBehaviour
     private float moveSpeed = 1;
     private Vector3 moveDirection;
 
+    [Header("Attack Settings")]
+    [SerializeField] private float attackRange = 1.2f;
+
     [Header("States")]
     [SerializeField] private bool isPreparingAttack;
     [SerializeField] private bool isMoving;
@@ -248,7 +251,7 @@ public class EnemyScript : MonoBehaviour
         if (!isPreparingAttack)
             return;
 
-        if(Vector3.Distance(transform.position, playerCombat.transform.position) < 2)
+        if(Vector3.Distance(transform.position, playerCombat.transform.position) < attackRange)
         {
             StopMoving();
             if (!playerCombat.isCountering && !playerCombat.isAttackingEnemy)
@@ -328,4 +331,15 @@ public class EnemyScript : MonoBehaviour
     }
 
     #endregion
+
+    void OnDrawGizmosSelected()
+    {
+        // Vòng đỏ = tầm tấn công (chỉnh attackRange trong Inspector)
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // Vòng vàng = tầm rút lui (4 units cố định)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 4f);
+    }
 }
