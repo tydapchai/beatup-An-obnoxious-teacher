@@ -105420,7 +105420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3274f8513b101c4a93ce777c6965059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyScript
-  health: 3
+  health: 10
   attackRange: 0.7
   isPreparingAttack: 0
   isMoving: 0
